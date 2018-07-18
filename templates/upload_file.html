@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="position: relative;display: inline-block;height: 50px;min-width: 300px;overflow: hidden;">
+        <div style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;z-index: 1000;border: 1px dotted #9d9d9d;color: #9d9d9d;line-height: 50px;padding-left: 15px;">
+            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            <span>点击上传文件</span>
+        </div>
+        <input name="customer_excel" type="file" id="excelFile"
+               style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;background-color: #333333;z-index: 1001;opacity: 0;filter:alpha(opacity=0);">
+    </div>
+    <div>
+        <input type="text" name="user">
+        <input type="submit" value="提交">
+    </div>
+</form>
+<script src="/static/js/jquery.js"></script>
+<script>
+    $(function () {
+        $('#excelFile').change(function (g) {
+            var fileName = g.currentTarget.files[0].name;
+            $(this).prev().find('span').text(fileName)
+        })
+    })
+</script>
+</body>
+</html>

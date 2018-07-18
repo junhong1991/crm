@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {#    <div style="width: 500px;height: 200px;border: 1px solid red;position: relative">#}
+    {#        <input style="position:absolute;top: 0;left: 0;right: 0;bottom: 0;z-index: 1001;opacity: 0;" type="file" name="avatar">#}
+    {#        <div style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;background-color: darkgray;z-index: 1000">请上传文件</div>#}
+    {#    </div>#}
+
+    {#    <div style="position: relative;display: inline-block;height: 50px;min-width: 300px;overflow: hidden;">#}
+    {#        <div style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;z-index: 1000;border: 1px dotted #9d9d9d;color: #9d9d9d;line-height: 50px;padding-left: 15px;">#}
+    {#            <i class="fa fa-cloud-upload" aria-hidden="true"></i>#}
+    {#            <span>点击上传文件</span>#}
+    {#        </div>#}
+    {#        <input name="customer_excel" type="file" id="excelFile"#}
+    {#               style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;background-color: #333333;z-index: 1001;opacity: 0;filter:alpha(opacity=0);">#}
+    {#    </div>#}
+
+    <div style="height: 100px;width: 100px;padding: 2px;border: 1px solid #dddddd;position: relative;">
+        <img style="height: 100%;width: 100%;border: 0;overflow: hidden;border-radius: 50%;" id="previewImg"
+             src="/static/imgs/default.png">
+        <input style="top: 0;left: 0;right: 0;bottom: 0;opacity: 0;position: absolute;z-index: 102;" id="avatarImg"
+               name="avatar_img" type="file" class="img-file"/>
+    </div>
+    <div>点击图片更换(<a href="#">撤销</a>)</div>
+    <div>
+        <input type="text" name="user">
+        <input type="submit" value="提交">
+    </div>
+</form>
+<script src="/static/js/jquery.js"></script>
+<script>
+    $(function () {
+        $('#excelFile').change(function (g) {
+            var fileName = g.currentTarget.files[0].name;
+            $(this).prev().find('span').text(fileName)
+        })
+    })
+</script>
+</body>
+</html>

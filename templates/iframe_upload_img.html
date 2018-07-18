@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<iframe id="ifr" onload="onloadIframe(this);" name="fffff"></iframe>
+<form method="post" action="/upload_iframe/" target="fffff" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="avatar">
+    <input type="submit" value="提交">
+</form>
+<script src="/static/js/jquery.js"></script>
+<script>
+    $('#ifr').load(function () {
+       var iframeContents = this.contentWindow.document.body.innerText;
+        iframeContents = JSON.parse(iframeContents);
+        console.log(iframeContents);
+    });
+    $('#upload_iframe').load(function () {
+        var iframeContents = this.contentWindow.document.body.innerText;
+        iframeContents = JSON.parse(iframeContents);
+        console.log(iframeContents);
+        if (iframeContents.status){
+            $('#previewImg').attr('src','/' + iframeContents.data);
+        }
+    })
+</script>
+
+{#<div>#}
+{#    <input type="text" id="addr">#}
+{#    <input type="button" onclick="changeUrl();" value="访问">#}
+{#</div>#}
+{#<iframe id="ifr" style="height: 800px;width: 960px" src="https://www.autohome.com.cn"></iframe>#}
+{#<script>#}
+{#    function changeUrl() {#}
+{#        var addr = document.getElementById('addr').value;#}
+{#        document.getElementById('ifr').src = addr;#}
+{#    }#}
+{#</script>#}
+</body>
+</html>
